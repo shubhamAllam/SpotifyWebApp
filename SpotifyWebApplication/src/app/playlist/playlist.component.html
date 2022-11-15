@@ -1,0 +1,31 @@
+<mat-drawer-container class="playlist-container">
+    <mat-drawer mode="side" opened class="playlist-drawer-content">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item (click)="navToDashboard()">
+                Add Song
+            </a>
+            <a mat-list-item (click)="navToDashboard()">
+                Delete All
+            </a>
+            <a mat-list-item (click)="navToDashboard()">
+                Go Back
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="playlist-main-content">
+        <mat-toolbar color="primary">
+            <span>User Playlist</span>
+            <a class="playlist-logout-button">
+                <button mat-button><mat-icon>logout</mat-icon>Logout</button>
+            </a>
+        </mat-toolbar>
+        <mat-card class="playlist-song-card" *ngFor="let song of playlistItem">
+            <section class="playlist-song-id"><span>{{song.songId}}</span></section>
+            <section class="playlist-song-name"><span>{{song.songName}}</span></section>
+            <section><button mat-icon-button (click)="playSong()"><mat-icon>play_circle_filled</mat-icon></button></section>
+            <section><button mat-icon-button (click)="removeSong(song)"><mat-icon>remove_circle</mat-icon></button></section>
+        </mat-card>
+    </mat-drawer-content>
+</mat-drawer-container>
+

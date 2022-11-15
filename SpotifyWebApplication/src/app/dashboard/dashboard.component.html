@@ -1,0 +1,34 @@
+<mat-drawer-container class="dashboard-container">
+    <mat-drawer mode="side" opened class="dashboard-drawer-content">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item (click)="navToHome()" *ngIf="check != true">
+                Login
+            </a>
+            <a mat-list-item (click)="navToHome()" *ngIf="check != true">
+                Register
+            </a>
+            <a mat-list-item *ngIf="check == true" (click)="navToPlaylist()">
+                Playlist
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="dashboard-main-content">
+        <mat-toolbar color="primary">
+            <span>Spotify</span>
+            <mat-form-field class="dashboard-search-bar">
+                <input matInput type="text" name="searchquery" id="searchquery" placeholder="Search">
+            </mat-form-field>
+            <button mat-icon-button matTooltip="Search"><mat-icon>search</mat-icon></button>
+            <a class="dashboard-logout-button" *ngIf="check == true" (click)="logoutFunc()">
+                <button mat-button><mat-icon>logout</mat-icon>Logout</button>
+            </a>
+        </mat-toolbar>
+        <mat-card class="dashboard-song-card" *ngFor="let song of allSongs">
+            <section class="dashboard-song-id"><span>{{song.songId}}</span></section>
+            <section class="dashboard-song-name"><span>{{song.songName}}</span></section>
+            <section><button mat-icon-button (click)="playSong()"><mat-icon>play_circle_filled</mat-icon></button></section>
+            <section><button mat-icon-button (click)="addToPlaylist(song)"><mat-icon>add_circle</mat-icon></button></section>
+        </mat-card>
+    </mat-drawer-content>
+</mat-drawer-container>

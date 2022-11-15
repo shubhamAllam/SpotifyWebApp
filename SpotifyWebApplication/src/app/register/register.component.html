@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+    Spotify
+</mat-toolbar>
+<form [formGroup]="RegistryForm" (submit)="registerData()" class="register-form">
+    <span>Registry Form</span>
+    <div>
+        <mat-form-field class="register-username" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput placeholder="username" formControlName="userName" class="inputs">
+        </mat-form-field>
+        <div class="errMsg" *ngIf="RegistryForm.controls['userName'].hasError('required')"> username is a Mandatory Field </div>
+    </div>
+    <div>
+        <mat-form-field class="register-password" appearance="fill">
+            <mat-label>Set Password</mat-label>
+            <input type="password" matInput placeholder="Ex TesT1235@hg" formControlName="password">
+        </mat-form-field>
+        <div class="errMsg" *ngIf="RegistryForm.controls['password'].hasError('required')"> Password is Mandatory </div>
+        <div class="errMsg" *ngIf="RegistryForm.controls['password'].hasError('pattern')"> Password is Weak. (must have a-z,A-Z,0-9,any sighn) </div>
+    </div>
+    <div>
+        <mat-form-field class="register-email" appearance="fill">
+            <mat-label>Email Id</mat-label>
+            <input type="email" matInput placeholder="Ex xuz10@abc.com" formControlName="email">
+        </mat-form-field>
+        <div class="errMsg" *ngIf="RegistryForm.controls['email'].hasError('required')"> Email is Mandatory </div>
+        <div class="errMsg" *ngIf="RegistryForm.controls['email'].hasError('email')"> Invalid Email Format </div>
+    </div>
+    <div>
+        <mat-form-field class="register-userId" appearance="fill">
+            <mat-label>Set An ID(number)</mat-label>
+            <input type="text" matInput placeholder="Ex TesT1235@hg" formControlName="userId">
+        </mat-form-field>
+        <div class="errMsg" *ngIf="RegistryForm.controls['userId'].hasError('pattern')"> userId must be a number </div>
+        <div class="errMsg" *ngIf="RegistryForm.controls['userId'].hasError('maxLength')"> userId must be a number </div>
+    </div>
+    <button mat-raised-button type="submit" color="primary" [disabled]="RegistryForm.invalid">Register</button>
+</form>
